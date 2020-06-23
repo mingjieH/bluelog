@@ -12,6 +12,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from bluelog.extensions import db
 
+import configparser,os
+
 
 class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -82,3 +84,19 @@ class Link(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30))
     url = db.Column(db.String(255))
+
+
+# class ReadConfig():
+def read_config(section, option):
+    # 读取配置文件节点内容
+
+    # 获取当前文件的路径
+    file_path = os.path.dirname(__file__)
+    # 获取配置文件config.ini的路径
+    config_path = os.path.join(file_path, 'data_init.ini')
+    # print(config_path)
+
+    conf = configparser.ConfigParser()
+    conf.read(config_path, encoding='gbk')
+    parment = conf.get(section, option)
+    return parment

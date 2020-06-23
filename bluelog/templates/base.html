@@ -48,7 +48,7 @@
                                aria-expanded="false">
                                 Manage <span class="caret"></span>
                                 {% if unread_comments %}
-                                    <span class="badge badge-success">new</span>
+                                    <span class="badge badge-success">New</span>
                                 {% endif %}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -82,9 +82,15 @@
     {% block footer %}
         <footer>
             <p class="float-left">
-                <small> &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a> -
-                    <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -
-                    <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>
+                <small>Copyright &copy;
+                        <script type="text/javascript">
+                            var date=new Date;
+                            document.write(date.getFullYear())
+                        </script>
+                    <a href="/" title="Written by Jay Huang">Jay Huang</a>
+{#                    &copy; 2018 <a href="http://greyli.com" title="Written by Grey Li">Grey Li</a> -#}
+{#                    <a href="https://github.com/greyli/bluelog" title="Fork me on GitHub">GitHub</a> -#}
+{#                    <a href="http://helloflask.com" title="A HelloFlask project">HelloFlask</a>#}
                 </small>
             </p>
             <p class="float-right">

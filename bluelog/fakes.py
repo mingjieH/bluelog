@@ -11,20 +11,27 @@ from faker import Faker
 from sqlalchemy.exc import IntegrityError
 
 from bluelog.extensions import db
-from bluelog.models import Admin, Category, Post, Comment, Link
+from bluelog.models import Admin, Category, Post, Comment, Link, read_config
 
 fake = Faker()
 
 
 def fake_admin():
+    # admin = Admin(
+    #     username='admin',
+    #     blog_title='Bluelog',
+    #     blog_sub_title="No, I'm the real thing.",
+    #     name='Mima Kirigoe',
+    #     about='Um, l, Mima Kirigoe, had a fun time as a member of CHAM...'
+    # )
     admin = Admin(
-        username='admin',
-        blog_title='Bluelog',
-        blog_sub_title="No, I'm the real thing.",
-        name='Mima Kirigoe',
-        about='Um, l, Mima Kirigoe, had a fun time as a member of CHAM...'
+        username=read_config('admin','admin_name'),
+        blog_title=read_config('blog','blog_title'),
+        blog_sub_title=read_config('blog','blog_sub_title'),
+        name=read_config('blog','blog_name'),
+        about=read_config('blog','blog_about')
     )
-    admin.set_password('helloflask')
+    admin.set_password(read_config('admin','admin_password'))
     db.session.add(admin)
     db.session.commit()
 
