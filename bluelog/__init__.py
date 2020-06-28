@@ -19,7 +19,7 @@ from bluelog.blueprints.admin import admin_bp
 from bluelog.blueprints.auth import auth_bp
 from bluelog.blueprints.blog import blog_bp
 from bluelog.extensions import bootstrap, db, login_manager, csrf, ckeditor, mail, moment, toolbar, migrate
-from bluelog.models import Admin, Post, Category, Comment, Link
+from bluelog.models import Admin, Post, Category, Comment, Link, read_config
 from bluelog.settings import config
 
 basedir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
@@ -164,11 +164,11 @@ def register_commands(app):
         else:
             click.echo('Creating the temporary administrator account...')
             admin = Admin(
-                username=username,
-                blog_title='Bluelog',
-                blog_sub_title="No, I'm the real thing.",
-                name='Admin',
-                about='Anything about you.'
+                username=read_config('admin','admin_name'),
+                blog_title=read_config('blog','blog_title'),
+                blog_sub_title=read_config('blog','blog_sub_title'),
+                name=read_config('blog','blog_name'),
+                about=read_config('blog','blog_about')
             )
             admin.set_password(password)
             db.session.add(admin)

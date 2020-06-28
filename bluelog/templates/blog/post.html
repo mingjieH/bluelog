@@ -13,7 +13,7 @@
             <form class="inline" method="post"
                   action="{{ url_for('admin.delete_post', post_id=post.id, next=url_for('blog.index')) }}">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure delete the post?');">Delete
                 </button>
             </form>
         {% endif %}
@@ -104,7 +104,7 @@
                                               action="{{ url_for('admin.delete_comment', comment_id=comment.id, next=request.full_path) }}">
                                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure?');">Delete
+                                                    onclick="return confirm('Are you sure delete the comment?');">Delete
                                             </button>
                                         </form>
                                     {% endif %}
